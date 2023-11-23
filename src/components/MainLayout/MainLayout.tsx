@@ -1,3 +1,9 @@
+import { Header } from "../Header/Header.tsx";
+
 export const MainLayout = () => {
-  return <></>;
+  return (
+    <div>
+      <Header />
+    </div>
+  );
 };
