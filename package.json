@@ -7,15 +7,19 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "server": "ts-node --esm server/server.ts",
+    "serve": "node dist/index.js"
   },
   "dependencies": {
     "@skbkontur/react-ui": "^4.17.3",
     "@types/express": "^4.17.21",
+    "axios": "^1.6.2",
     "express": "^4.18.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.20.0"
+    "react-router-dom": "^6.20.0",
+    "ts-node": "^10.9.1"
   },
   "devDependencies": {
     "@types/node": "^20.9.2",
