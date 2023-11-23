@@ -1,0 +1,15 @@
+.formContainer {
+  display: flex;
+  gap: 16px;
+  flex-direction: column;
+
+  margin-top: 32px;
+}
+
+.fileCount {
+  margin-top: 16px;
+}
+
+.container {
+  max-width: 1224px;
+}
