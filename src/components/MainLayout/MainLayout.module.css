@@ -5,7 +5,7 @@
 }
 
 .content {
-  width: 1224px;
+  max-width: 1224px;
   padding: 0 28px;
-  margin: 24px 0;
+  margin: 24px auto;
 }
