@@ -2,7 +2,7 @@ import { FormModel } from "../FormModel/FormModel.tsx";
 import { Button, FileUploader, Input } from "@skbkontur/react-ui";
 import styles from "./MainPage.module.css";
 import { useState } from "react";
-// import { axiosInstance } from "../../helpers/axiosInstance.ts";
+import { axiosInstance } from "../../helpers/axiosInstance.ts";
 import { model } from "../../../model.ts";
 
 const emptyModelState = Array(model.length).fill("");
@@ -23,7 +23,7 @@ export const MainPage = () => {
   };
 
   const sendForm = async () => {
-    // await axiosInstance.post("/submit", {});
+    await axiosInstance.post("/submit", formState);
     console.log(formState);
   };
 
