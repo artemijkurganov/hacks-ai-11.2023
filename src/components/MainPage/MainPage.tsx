@@ -21,9 +21,18 @@ export const MainPage = () => {
     const numberValue = +value;
     if (!numberValue || numberValue <= 0) return;
     setFormCount(numberValue);
-    setFormState(
-      Array.from({ length: numberValue }, () => [...emptyModelState]),
-    );
+
+    const currentFormState = formState;
+
+    if (numberValue > currentFormState.length) {
+      const additionalForms = Array.from(
+        { length: numberValue - currentFormState.length },
+        () => [...emptyModelState],
+      );
+      setFormState([...currentFormState, ...additionalForms]);
+    } else if (numberValue < currentFormState.length) {
+      setFormState(currentFormState.slice(0, numberValue));
+    }
   };
 
   const sendForm = async () => {
