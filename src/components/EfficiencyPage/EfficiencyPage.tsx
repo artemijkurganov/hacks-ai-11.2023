@@ -5,6 +5,7 @@ import { useState } from "react";
 import { axiosInstance } from "../../helpers/axiosInstance.ts";
 import { efficiencyModels } from "../../../models.ts";
 import { csvToFormState } from "../../helpers/csvToFormState.ts";
+import { ModalWithResult } from "../Modal/Modal.tsx";
 
 const emptyModelState = Array(efficiencyModels.length).fill("");
 
@@ -16,6 +17,9 @@ export const EfficiencyPage = () => {
   const [isSendFormSuccess, setSendFormSuccess] = useState(false);
   const [isSendFormLoading, setSendFormLoading] = useState(false);
   const [isRunScriptLoading, setRunScriptLoading] = useState(false);
+
+  const [isModalOpened, setModalOpened] = useState(false);
+  const [scriptResult, setScriptResult] = useState("");
 
   const handleSetFormCount = (value: string) => {
     const numberValue = +value;
@@ -55,13 +59,20 @@ export const EfficiencyPage = () => {
     });
     const response = await axiosInstance.post("/eff/runScript");
     if (response.status === 200) {
-      Toast.push(response.data);
+      setScriptResult(response.data);
+      setModalOpened(true);
     }
     setRunScriptLoading(false);
   };
 
   return (
     <div className={styles.container}>
+      {isModalOpened && (
+        <ModalWithResult
+          onClose={() => setModalOpened(false)}
+          result={scriptResult}
+        />
+      )}
       <h1>Данные эффективности</h1>
       <p>Введите данные в форму ниже, или загрузите с помощью файла</p>
       <FileUploader
