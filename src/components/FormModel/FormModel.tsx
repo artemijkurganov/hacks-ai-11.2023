@@ -1,5 +1,5 @@
 import styles from "./FormModel.module.css";
-import { model } from "../../../model.ts";
+import { model, nameForm } from "../../../model.ts";
 import { Input } from "@skbkontur/react-ui";
 import { InputLabel } from "../InputField/InputLabel.tsx";
 import { Dispatch, SetStateAction } from "react";
@@ -13,7 +13,7 @@ type FormModelType = {
 export const FormModel = ({ index, state, setState }: FormModelType) => {
   return (
     <div className={styles.container}>
-      <h2>Форма {index + 1}</h2>
+      <h2>{nameForm(index)}</h2>
       <div className={styles.inputFields}>
         {model.map((x, i) => {
           return (

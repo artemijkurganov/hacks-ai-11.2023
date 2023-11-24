@@ -5,11 +5,13 @@ type ModelType = {
 };
 
 export const model: ModelType[] = [
-  { inputType: "string", name: "Поле 1" },
-  { inputType: "string", name: "Поле 2" },
-  { inputType: "number", name: "Поле 3" },
-  { inputType: "number", name: "Поле 4" },
-  { inputType: "number", name: "Поле 5" },
-  { inputType: "string", name: "Поле 6" },
-  { inputType: "string", name: "Поле 7" },
+  { inputType: "string", name: "Ячейка 1" },
+  { inputType: "string", name: "Ячейка 2" },
+  { inputType: "number", name: "Ячейка 3" },
+  { inputType: "number", name: "Ячейка 4" },
+  { inputType: "number", name: "Ячейка 5" },
+  { inputType: "string", name: "Ячейка 6" },
+  { inputType: "string", name: "Ячейка 7" },
 ];
+
+export const nameForm = (index: number) => `Форма ${index + 1}`;
