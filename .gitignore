@@ -25,3 +25,6 @@ dist-ssr
 
 # Ignore for network outside companies
 .npmrc
+
+# Ingore csv files
+*.csv
