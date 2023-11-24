@@ -32,7 +32,7 @@ app.post("/eff/submit", (req, res) => {
 });
 
 app.post("/eff/runScript", (_, res) => {
-  runPythonScript("./script/example.py", res);
+  runPythonScript("./script/energy_effect.py", res);
 });
 
 app.listen(port, () => {

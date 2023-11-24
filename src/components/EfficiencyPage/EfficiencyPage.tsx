@@ -62,7 +62,7 @@ export const EfficiencyPage = () => {
 
   return (
     <div className={styles.container}>
-      <h1>Данные</h1>
+      <h1>Данные эффективности</h1>
       <p>Введите данные в форму ниже, или загрузите с помощью файла</p>
       <FileUploader
         accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"

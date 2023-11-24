@@ -16,11 +16,11 @@ export const mainModels: ModelType[] = [
 ];
 
 export const efficiencyModels: ModelType[] = [
-  { inputType: "number", name: "Общая площадь объекта недвижимости" },
-  { inputType: "number", name: "Общая площадь здания" },
+  { inputType: "number", name: "Общая площадь объекта недвижимости, кв. м" },
+  { inputType: "number", name: "Общая площадь здания, кв. м" },
   { inputType: "number", name: "Занято службами Банка России" },
   { inputType: "number", name: "Не занято (не\xA0используется)" },
-  { inputType: "number", name: "Балансовая стоимость" },
+  { inputType: "number", name: "Балансовая стоимость, руб" },
   { inputType: "number", name: "Сумма начисленной амортизации" },
   { inputType: "string", name: "Техническое состояние" },
   { inputType: "number", name: "Количество помещений" },
