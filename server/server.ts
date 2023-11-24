@@ -2,6 +2,7 @@ import express, { Request, Response } from "express";
 import cors from "cors";
 import parser from "body-parser";
 import {saveToCsv} from "./saveToCsv.ts";
+import {runPythonScript} from "./runPythonScript.ts";
 
 const app = express();
 const port = 3010;
@@ -17,6 +18,7 @@ app.post("/submit", (req, res) => {
   const data: string[][] = req.body;
   console.log(data);
   saveToCsv(data);
+  runPythonScript("./script/example.py")
   res.send("Data received");
 });
 
