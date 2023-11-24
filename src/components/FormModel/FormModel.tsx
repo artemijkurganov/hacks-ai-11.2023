@@ -1,6 +1,6 @@
 import styles from "./FormModel.module.css";
 import { model, nameForm } from "../../../model.ts";
-import { Input } from "@skbkontur/react-ui";
+import { Input, Select } from "@skbkontur/react-ui";
 import { InputLabel } from "../InputField/InputLabel.tsx";
 import { Dispatch, SetStateAction } from "react";
 
@@ -11,6 +11,13 @@ type FormModelType = {
 };
 
 export const FormModel = ({ index, state, setState }: FormModelType) => {
+  const onValueChange = (value: string, i: number) =>
+    setState((prevState) => {
+      const newState = [...prevState];
+      newState[index][i] = value;
+      return newState;
+    });
+
   return (
     <div className={styles.container}>
       <h2>{nameForm(index)}</h2>
@@ -18,17 +25,21 @@ export const FormModel = ({ index, state, setState }: FormModelType) => {
         {model.map((x, i) => {
           return (
             <InputLabel name={x.name} key={x.name}>
-              <Input
-                type={x.inputType === "string" ? undefined : "number"}
-                value={state[i]}
-                onValueChange={(value) =>
-                  setState((prevState) => {
-                    const newState = [...prevState];
-                    newState[index][i] = value;
-                    return newState;
-                  })
-                }
-              />
+              {x.inputType === "select" && (
+                <Select
+                  value={state[i]}
+                  onValueChange={(value) => onValueChange(value, i)}
+                  items={x.items}
+                  width="200px"
+                />
+              )}
+              {x.inputType !== "select" && (
+                <Input
+                  type={x.inputType === "string" ? undefined : "number"}
+                  value={state[i]}
+                  onValueChange={(value) => onValueChange(value, i)}
+                />
+              )}
             </InputLabel>
           );
         })}

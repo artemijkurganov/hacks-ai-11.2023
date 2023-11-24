@@ -4,6 +4,7 @@ import styles from "./MainPage.module.css";
 import { useState } from "react";
 import { axiosInstance } from "../../helpers/axiosInstance.ts";
 import { model } from "../../../model.ts";
+import { csvToFormState } from "../../helpers/csvToFormState.ts";
 
 const emptyModelState = Array(model.length).fill("");
 
@@ -57,11 +58,18 @@ export const MainPage = () => {
       <FileUploader
         accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
         size="medium"
+        request={async (file) => {
+          const formState = await csvToFormState(file.originalFile);
+          setFormState(formState);
+          setFormCount(formState.length);
+          await Promise.resolve();
+        }}
       />
       <br />
       <div className={styles.fileCount}>
         <Input
           placeholder="Количество форм"
+          value={formCount.toString()}
           onValueChange={handleSetFormCount}
           type="number"
           size="medium"
@@ -73,7 +81,7 @@ export const MainPage = () => {
           onClick={sendForm}
           loading={isSendFormLoading}
         >
-          Отправить форму
+          Сохранить форму
         </Button>
       </div>
 

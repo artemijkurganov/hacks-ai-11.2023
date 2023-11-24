@@ -1,10 +1,10 @@
 import { spawn } from "child_process";
-import {Response} from "express"
+import { Response } from "express";
 
 export const runPythonScript = (name: string, res: Response) => {
   const command = "python3";
   const pythonProcess = spawn(command, [name]);
-  let outputData = '';
+  let outputData = "";
 
   pythonProcess.stdout.on("data", (data) => {
     outputData += data.toString();
@@ -20,7 +20,6 @@ export const runPythonScript = (name: string, res: Response) => {
 
   pythonProcess.on("close", (code) => {
     console.log(`Python script exited with code ${code}`);
-    res.send(outputData);
-    res.sendStatus(200);
+    res.status(200).send(outputData);
   });
 };

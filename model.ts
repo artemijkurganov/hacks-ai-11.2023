@@ -1,17 +1,18 @@
-type InputType = "number" | "string";
+type InputType = "number" | "string" | "select";
 type ModelType = {
   inputType: InputType;
   name: string;
+  items?: string[];
 };
 
 export const model: ModelType[] = [
-  { inputType: "string", name: "Ячейка 1" },
-  { inputType: "string", name: "Ячейка 2" },
-  { inputType: "number", name: "Ячейка 3" },
-  { inputType: "number", name: "Ячейка 4" },
-  { inputType: "number", name: "Ячейка 5" },
-  { inputType: "string", name: "Ячейка 6" },
-  { inputType: "string", name: "Ячейка 7" },
+  { inputType: "number", name: "Площадь" },
+  { inputType: "number", name: "Вложения" },
+  {
+    inputType: "select",
+    name: "Качество",
+    items: ["Удовлетворительное", "Хорошее", "Ветхое", "Аварийное"],
+  },
 ];
 
-export const nameForm = (index: number) => `Форма ${index + 1}`;
+export const nameForm = (index: number) => `Объект ${index + 1}`;
