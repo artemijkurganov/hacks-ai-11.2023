@@ -1,4 +1,5 @@
 import { PropsWithChildren } from "react";
+import styles from "./InputLabel.module.css";
 
 type InputLabelProps = PropsWithChildren<{
   name: string;
@@ -6,7 +7,7 @@ type InputLabelProps = PropsWithChildren<{
 
 export const InputLabel = ({ name, children }: InputLabelProps) => {
   return (
-    <div>
+    <div className={styles.container}>
       <p>{name}</p>
       {children}
     </div>

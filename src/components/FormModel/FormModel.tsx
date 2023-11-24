@@ -1,5 +1,5 @@
 import styles from "./FormModel.module.css";
-import { model, nameForm } from "../../../model.ts";
+import { ModelType, nameForm } from "../../../models.ts";
 import { Input, Select } from "@skbkontur/react-ui";
 import { InputLabel } from "../InputField/InputLabel.tsx";
 import { Dispatch, SetStateAction } from "react";
@@ -8,9 +8,10 @@ type FormModelType = {
   index: number;
   state: string[];
   setState: Dispatch<SetStateAction<string[][]>>;
+  model: ModelType[];
 };
 
-export const FormModel = ({ index, state, setState }: FormModelType) => {
+export const FormModel = ({ index, state, setState, model }: FormModelType) => {
   const onValueChange = (value: string, i: number) =>
     setState((prevState) => {
       const newState = [...prevState];

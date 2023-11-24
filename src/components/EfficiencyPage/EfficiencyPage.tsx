@@ -1,14 +1,14 @@
 import { FormModel } from "../FormModel/FormModel.tsx";
 import { Button, FileUploader, Input, Link, Toast } from "@skbkontur/react-ui";
-import styles from "./MainPage.module.css";
+import styles from "../MainPage/MainPage.module.css";
 import { useState } from "react";
 import { axiosInstance } from "../../helpers/axiosInstance.ts";
-import { mainModels } from "../../../models.ts";
+import { efficiencyModels } from "../../../models.ts";
 import { csvToFormState } from "../../helpers/csvToFormState.ts";
 
-const emptyModelState = Array(mainModels.length).fill("");
+const emptyModelState = Array(efficiencyModels.length).fill("");
 
-export const MainPage = () => {
+export const EfficiencyPage = () => {
   const [formCount, setFormCount] = useState<number>(1);
   const [formState, setFormState] = useState<string[][]>([
     [...emptyModelState],
@@ -40,7 +40,7 @@ export const MainPage = () => {
     await new Promise((resolve) => {
       setTimeout(() => resolve(true), 1000);
     });
-    const response = await axiosInstance.post("/submit", formState);
+    const response = await axiosInstance.post("/eff/submit", formState);
     if (response.status === 200) {
       Toast.push("Данные формы сохранены");
       setSendFormSuccess(true);
@@ -53,7 +53,7 @@ export const MainPage = () => {
     await new Promise((resolve) => {
       setTimeout(() => resolve(true), 1000);
     });
-    const response = await axiosInstance.post("/runScript");
+    const response = await axiosInstance.post("/eff/runScript");
     if (response.status === 200) {
       Toast.push(response.data);
     }
@@ -107,7 +107,7 @@ export const MainPage = () => {
             >
               Выполнить скрипт
             </Button>
-            <Link href="/output.csv" target="_blank">
+            <Link href="/efficiency.csv" target="_blank">
               Скачать файл
             </Link>
           </div>
@@ -123,7 +123,7 @@ export const MainPage = () => {
                 key={i}
                 state={formState[i]}
                 setState={setFormState}
-                model={mainModels}
+                model={efficiencyModels}
               />
             );
           })}
