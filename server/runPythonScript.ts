@@ -7,6 +7,7 @@ export const runPythonScript = (name: string, res: Response) => {
   let outputData = "";
 
   pythonProcess.stdout.on("data", (data) => {
+    console.log(data.toString());
     outputData += data.toString();
   });
 

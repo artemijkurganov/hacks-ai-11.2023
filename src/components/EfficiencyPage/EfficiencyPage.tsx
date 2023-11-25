@@ -79,9 +79,9 @@ export const EfficiencyPage = () => {
         accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
         size="medium"
         request={async (file) => {
-          const formState = await csvToFormState(file.originalFile);
+          const formState = await csvToFormState(file.originalFile, ",");
           setFormState(formState);
-          setFormCount(formState.length);
+          setFormCount(formState.length - 1 );
           await Promise.resolve();
         }}
       />

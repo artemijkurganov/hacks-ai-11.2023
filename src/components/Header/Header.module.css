@@ -2,8 +2,16 @@
   border-bottom: 1px solid #e8e9eb;
   padding: 16px 0;
   margin: 0 32px;
+
+  display: flex;
 }
 
-.container a {
+.container a:first-child {
   margin-left: 64px;
+}
+
+.headerMenu {
+  display: flex;
+  align-items: center;
+  gap: 16px;
 }

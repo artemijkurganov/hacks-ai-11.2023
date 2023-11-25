@@ -1,5 +1,6 @@
 export const csvToFormState = (
   csvFile: File,
+  separator: string
 ): Promise<string[][]> => {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -10,7 +11,7 @@ export const csvToFormState = (
         reject(new Error("File is empty"));
       }
       const lines = csvData.split("\n");
-      const formState = lines.slice(1).map((line) => line.split(","));
+      const formState = lines.slice(1).map((line) => line.split(separator));
       resolve(formState);
     };
 

@@ -5,6 +5,7 @@ import { useState } from "react";
 import { axiosInstance } from "../../helpers/axiosInstance.ts";
 import { mainModels } from "../../../models.ts";
 import { csvToFormState } from "../../helpers/csvToFormState.ts";
+import {ModalWithResult} from "../Modal/Modal.tsx";
 
 const emptyModelState = Array(mainModels.length).fill("");
 
@@ -16,6 +17,9 @@ export const MainPage = () => {
   const [isSendFormSuccess, setSendFormSuccess] = useState(false);
   const [isSendFormLoading, setSendFormLoading] = useState(false);
   const [isRunScriptLoading, setRunScriptLoading] = useState(false);
+
+  const [isModalOpened, setModalOpened] = useState(false);
+  const [scriptResult, setScriptResult] = useState("");
 
   const handleSetFormCount = (value: string) => {
     const numberValue = +value;
@@ -55,22 +59,29 @@ export const MainPage = () => {
     });
     const response = await axiosInstance.post("/runScript");
     if (response.status === 200) {
-      Toast.push(response.data);
+      setScriptResult(response.data);
+      setModalOpened(true);
     }
     setRunScriptLoading(false);
   };
 
   return (
     <div className={styles.container}>
-      <h1>Данные</h1>
+      {isModalOpened && (
+          <ModalWithResult
+              onClose={() => setModalOpened(false)}
+              result={scriptResult}
+          />
+      )}
+      <h1>Данные по коммунальным платежам</h1>
       <p>Введите данные в форму ниже, или загрузите с помощью файла</p>
       <FileUploader
         accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
         size="medium"
         request={async (file) => {
-          const formState = await csvToFormState(file.originalFile);
+          const formState = await csvToFormState(file.originalFile, ":");
           setFormState(formState);
-          setFormCount(formState.length);
+          setFormCount(formState.length - 1);
           await Promise.resolve();
         }}
       />

@@ -22,7 +22,7 @@ app.post("/submit", (req, res) => {
 });
 
 app.post("/runScript", (_, res) => {
-  runPythonScript("./script/example.py", res);
+  runPythonScript("./script/calculation_of_payments.py", res);
 });
 
 app.post("/eff/submit", (req, res) => {

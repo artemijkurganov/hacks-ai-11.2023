@@ -1,0 +1,10 @@
+.root {
+    color: inherit;
+    text-decoration: inherit;
+    border-radius: 8px;
+}
+
+.root:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+    box-shadow: transparent 0px 0px 0px 1px;
+}
