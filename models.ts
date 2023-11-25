@@ -17,10 +17,9 @@ export const mainModels: ModelType[] = [
   { inputType: "number", name: "Общая площадь объекта недвижимости" },
   { inputType: "number", name: "Общая площадь здания" },
   { inputType: "number", name: "Занято службами Банка России" },
-  { inputType: "number", name: "Год сметы" },
   { inputType: "number", name: "Не занято (не используется)" },
   { inputType: "number", name: "Балансовая стоимость" },
-  { inputType: "number", name: "Сумма начисленной амортизации" },
+  { inputType: "string", name: "Сумма начисленной амортизации" },
   { inputType: "string", name: "Техническое состояние" },
   { inputType: "string", name: "Количество помещений" },
 ];

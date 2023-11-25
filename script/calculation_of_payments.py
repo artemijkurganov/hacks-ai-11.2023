@@ -5,6 +5,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from catboost import CatBoostRegressor
 import numpy as np
 warnings.filterwarnings('ignore')
+import os
 
 
 # Данные о постройках по кварталам
@@ -60,7 +61,7 @@ quartal_4_2021 = process_quartal_data(quartal_4_2021)
 
 # Данные о температуре
 
-temperature_data = pd.read_excel('temperature_data.xlsx')
+temperature_data = pd.read_excel(os.path.join("script", "temperature_data.xlsx"))
 temperature_data.rename(columns={'Дата проведения': 'Месяц'}, inplace=True)
 
 # Данные о платежах
@@ -170,5 +171,5 @@ model = CatBoostRegressor(border_count=64, depth=8, iterations=1000, l2_leaf_reg
 model.fit(X_train_combined, y)
 
 y_pred = scaler2.inverse_transform(model.predict(X_test_combined).reshape(-1, 1))
-print(y_pred)
+print(np.abs(y_pred))
 
